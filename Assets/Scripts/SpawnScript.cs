@@ -42,7 +42,7 @@ public class SpawnScript : MonoBehaviour {
 		float scale = Random.Range (1f, 3f);
 		donald.transform.localScale = new Vector3 (scale, scale, scale);
 		donald.transform.LookAt(mTarget);
-		manager.increaseCounter ();
+		//manager.increaseCounter ();
 		return donald;
 	}
 

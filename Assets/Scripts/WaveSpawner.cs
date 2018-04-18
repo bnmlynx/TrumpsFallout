@@ -151,7 +151,6 @@ public class WaveSpawner : MonoBehaviour {
 
 		DonaldBehaviour getAudio = don.GetComponent<DonaldBehaviour> ();
 		AudioClip randomSounds = getAudio.donaldSounds [0];
-		scoreManager.increaseCounter ();
 
 		audio.PlayOneShot(randomSounds);
 		don.transform.LookAt(center);

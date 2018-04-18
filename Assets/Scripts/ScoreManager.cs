@@ -12,20 +12,15 @@ public class ScoreManager : MonoBehaviour {
 	public Text donaldsKilled;
 	public Text finalScore;
 	public Text finalWaves;
-	public Image radiationBar;
 	public int numOfWaves = 0;
 	public int numOfDonaldsAlive;
 	public GameObject gameOverScreen;
+	public Image radiationBar;
 
 	public float startRadiation = 0f;
 	public float totalTrumps;
 	public float endRadiation;
 	public float radiation;
-
-	public float test;
-
-
-	private WaveSpawner waveSpawnerScript;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +28,6 @@ public class ScoreManager : MonoBehaviour {
 		score = 0;
 		radiation = startRadiation;
 		numOfDonaldsAlive = 0;
-		waveSpawnerScript = GetComponent<WaveSpawner> ();
 	}
 
 	// Update is called once per frame
@@ -43,13 +37,8 @@ public class ScoreManager : MonoBehaviour {
 
 		endRadiation = endRadiation * 10f;
 
-
-
-		//Debug.Log (endRadiation);
-
 		wavesLasted.text = "WAVE " + numOfWaves.ToString();
 		donaldsKilled.text = "SCORE " +  score.ToString();
-
 
 		if (radiation >= endRadiation) {
 			EndGame ();
@@ -67,12 +56,25 @@ public class ScoreManager : MonoBehaviour {
 
 		radiation += 10f;
 		radiationBar.fillAmount = radiation / endRadiation;
-		numOfDonaldsAlive++;
+		//numOfDonaldsAlive++;
 	}
 
 	public void decreaseCounter() {
 		radiation -= 10f;
-		radiationBar.fillAmount = radiation / endRadiation;
+		//radiationBar.fillAmount = radiation / endRadiation;
 		numOfDonaldsAlive--;
 	}
+
+
+	void OnTriggerEnter(Collider other) {
+
+		increaseCounter ();
+		Destroy (other.gameObject);
+
+
+	}
+
+
+
+
 }

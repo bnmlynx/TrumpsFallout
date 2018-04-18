@@ -43,6 +43,7 @@ public class DonaldBehaviour : MonoBehaviour {
 		//if (transform.position.sqrMagnitude - playerPosition.sqrMagnitude > 2000f) {
 		//}
 	}
+		
 
 	public bool Hit(int hitDamage) 
 	{
@@ -79,6 +80,7 @@ public class DonaldBehaviour : MonoBehaviour {
 			isScaled = true;
 		}
 	}
+
 
 
 	private void DonaldSettings() 

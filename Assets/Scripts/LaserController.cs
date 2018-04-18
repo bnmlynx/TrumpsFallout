@@ -13,6 +13,7 @@ public class LaserController : MonoBehaviour {
 	public AudioClip shootSound;
 	public AudioClip hitSound;
 	public GameObject _sm;
+	public ParticleSystem deathEffect;
 
 	private LineRenderer mLaserLine;
 	private bool mLazerLineEnabled;
@@ -53,13 +54,16 @@ public class LaserController : MonoBehaviour {
 			mLaserLine.SetPosition (1, hit.point);
 
 			DonaldBehaviour behaviourScript = hit.collider.GetComponent<DonaldBehaviour> ();
+			Debug.Log (hit.collider.transform.position);
 
 			if (behaviourScript != null) {
 				if (hit.rigidbody != null) {
 					hit.rigidbody.AddForce (-hit.normal * mHitForce);
+					Destroy (Instantiate (deathEffect.gameObject, hit.collider.transform.position, Quaternion.FromToRotation (cam.forward, hit.collider.transform.localPosition)) as GameObject, deathEffect.startLifetime);
 					behaviourScript.Hit (mLaserDamage);
 					scoreManager.decreaseCounter ();
 					source.PlayOneShot(hitSound);
+						
 				}
 			} 
 
