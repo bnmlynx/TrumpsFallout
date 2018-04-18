@@ -37,15 +37,13 @@ public class WaveSpawner : MonoBehaviour {
 		scoreManager = GetComponent<ScoreManager> ();
 
 		scoreManager.totalTrumps = waves [0].count;
-
 	}
 
 
 	void Start() 
 	{
 		waveCountdown = timeBetweenWaves;
-
-
+	
 	}
 
 	void Update() 

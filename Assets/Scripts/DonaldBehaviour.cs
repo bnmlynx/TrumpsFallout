@@ -11,6 +11,8 @@ public class DonaldBehaviour : MonoBehaviour {
 	public int scoreValue = 1; 
 	public float growingSpeed = 20f;
 	public AudioClip[] donaldSounds;
+	public float speed = 5f;
+	public Vector3 target;
 	//public Transform playerPosition;
 
 	private bool isAlive = true; 
@@ -23,18 +25,20 @@ public class DonaldBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		DonaldSettings ();
+		//DonaldSettings ();
+		Vector3 target = new Vector3(0f, 0f, 0f);
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		RotateDonald ();
+		//RotateDonald ();
+		float step = speed * Time.deltaTime;
+		transform.position = transform.position = Vector3.MoveTowards(transform.position, target, step);
 
 		if (!isScaled)
 			ScaleDonald ();
-
-		Vector3 playerPosition = new Vector3 (0f, 0f, 0f);
 
 		//if (transform.position.sqrMagnitude - playerPosition.sqrMagnitude > 2000f) {
 		//}
@@ -80,6 +84,8 @@ public class DonaldBehaviour : MonoBehaviour {
 	private void DonaldSettings() 
 	{
 		orbitAnchor = Camera.main.transform;
+
+
 
 		float x = Random.Range (-1f, 1f);
 		float y = Random.Range (-1f, 1f);

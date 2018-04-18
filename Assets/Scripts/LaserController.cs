@@ -27,7 +27,6 @@ public class LaserController : MonoBehaviour {
 		source = GetComponent<AudioSource>();
 		mLaserLine = GetComponent<LineRenderer> ();
 		scoreManager = _sm.GetComponent<ScoreManager> ();
-
 	}
 	
 	// Update is called once per frame

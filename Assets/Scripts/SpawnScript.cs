@@ -6,10 +6,10 @@ using Vuforia;
 public class SpawnScript : MonoBehaviour {
 
 	public GameObject donaldTrump;
-	public int totalTrumps = 10;
+	public int mTotalTrumps = 10;
 	public float mTimeToSpawn = 1f;
 	public GameObject g;
-	public Transform target;
+	public Transform mTarget;
 
 	private ScoreManager manager;
 	private GameObject[] trumps;
@@ -18,7 +18,7 @@ public class SpawnScript : MonoBehaviour {
 	void Start()
 	{
 		StartCoroutine (SpawnLoop ());
-		trumps = new GameObject[totalTrumps];
+		trumps = new GameObject[mTotalTrumps];
 		manager = g.GetComponent<ScoreManager> ();
 	}
 
@@ -29,7 +29,7 @@ public class SpawnScript : MonoBehaviour {
 		yield return new WaitForSeconds (0.2f);
 
 		int i = 0;
-		while (i <= (totalTrumps - 1)) {
+		while (i <= (mTotalTrumps - 1)) {
 			trumps [i] = SpawnElement ();
 			i++;
 			yield return new WaitForSeconds (Random.Range (mTimeToSpawn, mTimeToSpawn * 3));
@@ -41,7 +41,7 @@ public class SpawnScript : MonoBehaviour {
 		GameObject donald = Instantiate (donaldTrump, (Random.insideUnitSphere * 8) + transform.position, transform.rotation) as GameObject;
 		float scale = Random.Range (1f, 3f);
 		donald.transform.localScale = new Vector3 (scale, scale, scale);
-		donald.transform.LookAt(target);
+		donald.transform.LookAt(mTarget);
 		manager.increaseCounter ();
 		return donald;
 	}
