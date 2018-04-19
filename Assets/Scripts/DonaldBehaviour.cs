@@ -11,7 +11,7 @@ public class DonaldBehaviour : MonoBehaviour {
 	public int scoreValue = 1; 
 	public float growingSpeed = 20f;
 	public AudioClip[] donaldSounds;
-	public float speed = 5f;
+	public float speed = 7f;
 	public Vector3 target;
 	//public Transform playerPosition;
 

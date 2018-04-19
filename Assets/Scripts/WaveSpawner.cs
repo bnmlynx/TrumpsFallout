@@ -13,7 +13,8 @@ public class WaveSpawner : MonoBehaviour {
 		public string name;
 		public GameObject donald;
 		public int count;
-		public float rate;
+		public float minRate;
+		public float maxRate;
 	}
 		
 	public Wave[] waves;
@@ -25,6 +26,7 @@ public class WaveSpawner : MonoBehaviour {
 	public Text timeText;
 	public int donaldMultiplier;
 
+	private float rate;
 	private int nextWave = 0;
 	private float searchCountdown = 1f;
 	private ScoreManager scoreManager;
@@ -92,7 +94,8 @@ public class WaveSpawner : MonoBehaviour {
 		for (int i = 0; i < _wave.count; i++) 
 		{
 			SpawnEnemy (_wave.donald);
-			yield return new WaitForSeconds(_wave.rate);
+			rate = Random.Range (_wave.minRate, _wave.maxRate);
+			yield return new WaitForSeconds(rate);
 		}
 
 		scoreManager.totalTrumps = _wave.count;
@@ -146,7 +149,7 @@ public class WaveSpawner : MonoBehaviour {
 
 		Transform _sp = spawnPoints [Random.Range (0, spawnPoints.Length)];
 
-		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 10) + _sp.position, _sp.rotation);
+		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 100) + _sp.position, _sp.rotation);
 		audio = don.GetComponent<AudioSource> ();
 
 		DonaldBehaviour getAudio = don.GetComponent<DonaldBehaviour> ();

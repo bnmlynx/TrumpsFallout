@@ -2223,19 +2223,23 @@ MonoBehaviour:
   - name: Wave 1
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}
     count: 10
-    rate: 1.8
+    minRate: 0.5
+    maxRate: 3
   - name: Wave 2
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}
     count: 12
-    rate: 1.6
+    minRate: 0.3
+    maxRate: 2.5
   - name: Wave 3
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}
     count: 16
-    rate: 1.4
+    minRate: 0.2
+    maxRate: 2
   - name: Wave 4
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}
     count: 20
-    rate: 1.2
+    minRate: 0.2
+    maxRate: 1.8
   spawnPoints:
   - {fileID: 1658204003}
   - {fileID: 572507958}
@@ -2257,7 +2261,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &942386028
 Prefab:

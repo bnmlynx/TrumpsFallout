@@ -7,7 +7,7 @@ using UnityEngine;
 public class LaserController : MonoBehaviour {
 
 	public float mFireRate = .5f;
-	public float mFireRange = 2000f;
+	public float mFireRange = 10000f;
 	public float mHitForce = 100f;
 	public int mLaserDamage = 100;
 	public AudioClip shootSound;

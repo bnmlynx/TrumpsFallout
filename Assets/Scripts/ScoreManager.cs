@@ -67,10 +67,9 @@ public class ScoreManager : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other) {
-
+		
 		increaseCounter ();
 		Destroy (other.gameObject);
-
 
 	}
 
