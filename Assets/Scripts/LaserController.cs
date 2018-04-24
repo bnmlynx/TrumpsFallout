@@ -17,7 +17,7 @@ public class LaserController : MonoBehaviour {
 
 	private LineRenderer mLaserLine;
 	private bool mLazerLineEnabled;
-	private WaitForSeconds mLaserDuration =  new WaitForSeconds(0.05f);
+	private WaitForSeconds mLaserDuration =  new WaitForSeconds(0.02f);
 	private float mNextFire;
 	private AudioSource source;
 	private ScoreManager scoreManager;
@@ -38,19 +38,25 @@ public class LaserController : MonoBehaviour {
 		}
 	}
 
+	//function for firing lazer using raycast hit
 	private void Fire() 
 	{
 		Transform cam = Camera.main.transform;
 
+		//rate of fire
 		mNextFire = Time.time + mFireRate;
 
+		//the origin of the ray coming out of the camera
 		Vector3 rayOrigin = cam.position;
 
 		mLaserLine.SetPosition (0, transform.up * -5f);
 
 		RaycastHit hit;
 
+		//if statement to check if the raycast comes into contact with a collider
 		if (Physics.Raycast (rayOrigin, cam.forward, out hit, mFireRange)) {
+
+			//
 			mLaserLine.SetPosition (1, hit.point);
 
 			DonaldBehaviour behaviourScript = hit.collider.GetComponent<DonaldBehaviour> ();
@@ -59,9 +65,13 @@ public class LaserController : MonoBehaviour {
 			if (behaviourScript != null) {
 				if (hit.rigidbody != null) {
 					hit.rigidbody.AddForce (-hit.normal * mHitForce);
+
+					//destroys game object as well as instantiating the explosion effect
 					Destroy (Instantiate (deathEffect.gameObject, hit.collider.transform.position, Quaternion.FromToRotation (cam.forward, hit.collider.transform.localPosition)) as GameObject, deathEffect.startLifetime);
 					behaviourScript.Hit (mLaserDamage);
+					//decreases the level of radaiation
 					scoreManager.decreaseCounter ();
+					//play the hit sound effect
 					source.PlayOneShot(hitSound);
 						
 				}
@@ -77,6 +87,7 @@ public class LaserController : MonoBehaviour {
 	
 	}
 
+	//function to draw the line renderer aka the laser effect
 	private IEnumerator LaserFx() 
 	{
 		mLaserLine.enabled = true;

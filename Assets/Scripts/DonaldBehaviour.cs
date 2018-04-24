@@ -13,7 +13,6 @@ public class DonaldBehaviour : MonoBehaviour {
 	public AudioClip[] donaldSounds;
 	public float speed = 7f;
 	public Vector3 target;
-	//public Transform playerPosition;
 
 	private bool isAlive = true; 
 	private float orbitSpeed;
@@ -25,26 +24,23 @@ public class DonaldBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		//DonaldSettings ();
 		Vector3 target = new Vector3(0f, 0f, 0f);
-
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		//RotateDonald ();
+		//moves donald trump towards the player
 		float step = speed * Time.deltaTime;
 		transform.position = transform.position = Vector3.MoveTowards(transform.position, target, step);
 
+		//scales donald trump
 		if (!isScaled)
 			ScaleDonald ();
 
-		//if (transform.position.sqrMagnitude - playerPosition.sqrMagnitude > 2000f) {
-		//}
 	}
 		
-
+	
 	public bool Hit(int hitDamage) 
 	{
 		donaldHealth -= hitDamage;

@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
+	//created a public class to hold properties of the waves I'm going to be spawning
 	[System.Serializable]
 	public class Wave 
 	{
@@ -45,19 +46,16 @@ public class WaveSpawner : MonoBehaviour {
 	void Start() 
 	{
 		waveCountdown = timeBetweenWaves;
-	
 	}
 
 	void Update() 
 	{
 
 		if (state == SpawnState.WAITING) {
-
+			//if no enemies are alive run wave complete function
 			if (!EnemyIsAlive ()) {
 				WaveCompleted ();
-				return;
 			} else {
-				//
 				return;
 			}
 		}
@@ -71,19 +69,33 @@ public class WaveSpawner : MonoBehaviour {
 
 			//scoreManager.radiation += scoreManager.radiationBar.fillAmount += 0.01f * donaldMultiplier * Time.deltaTime;
 
-
 			if (state != SpawnState.SPAWNING) 
 			{
-
+				//starts spawning the wave
 				StartCoroutine(SpawnWave(waves[nextWave]));
-				//start spawning wave
 			}
 		} else {
-			
+			//begin count down to next wave
 			timeText.enabled = true;
 			waveCountdown -= Time.deltaTime;
 			timeText.text = "Next wave in " + waveCountdown.ToString ("F1"); 
 		}
+	}
+		
+	void SpawnEnemy(GameObject _enemy)
+	{
+
+		Transform _sp = spawnPoints [Random.Range (0, spawnPoints.Length)];
+
+		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 2) + _sp.position, _sp.rotation);
+		audio = don.GetComponent<AudioSource> ();
+
+		DonaldBehaviour getAudio = don.GetComponent<DonaldBehaviour> ();
+		AudioClip randomSounds = getAudio.donaldSounds [0];
+
+		audio.PlayOneShot(randomSounds);
+		don.transform.LookAt(center);
+
 	}
 
 	IEnumerator SpawnWave(Wave _wave)
@@ -141,22 +153,4 @@ public class WaveSpawner : MonoBehaviour {
 		return true;
 	}
 
-
-	void SpawnEnemy(GameObject _enemy)
-	{
-		//spawn enemy
-		//Debug.Log ("Spawning enemy:" + _enemy.name);
-
-		Transform _sp = spawnPoints [Random.Range (0, spawnPoints.Length)];
-
-		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 100) + _sp.position, _sp.rotation);
-		audio = don.GetComponent<AudioSource> ();
-
-		DonaldBehaviour getAudio = don.GetComponent<DonaldBehaviour> ();
-		AudioClip randomSounds = getAudio.donaldSounds [0];
-
-		audio.PlayOneShot(randomSounds);
-		don.transform.LookAt(center);
-
-	}
 }
