@@ -2222,7 +2222,7 @@ MonoBehaviour:
   waves:
   - name: Wave 1
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}
-    count: 10
+    count: 2
     minRate: 0.5
     maxRate: 3
   - name: Wave 2

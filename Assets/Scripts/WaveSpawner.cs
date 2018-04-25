@@ -87,7 +87,7 @@ public class WaveSpawner : MonoBehaviour {
 
 		Transform _sp = spawnPoints [Random.Range (0, spawnPoints.Length)];
 
-		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 2) + _sp.position, _sp.rotation);
+		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 4) + _sp.position, _sp.rotation);
 		audio = don.GetComponent<AudioSource> ();
 
 		DonaldBehaviour getAudio = don.GetComponent<DonaldBehaviour> ();
