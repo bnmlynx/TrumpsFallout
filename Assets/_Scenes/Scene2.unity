@@ -2222,8 +2222,8 @@ MonoBehaviour:
   waves:
   - name: Wave 1
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}
-    count: 2
-    minRate: 0.5
+    count: 8
+    minRate: 0.8
     maxRate: 3
   - name: Wave 2
     donald: {fileID: 1709818663085608, guid: 1eab71404a1b043b4b37eee5692f530a, type: 2}

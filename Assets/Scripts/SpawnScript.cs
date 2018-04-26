@@ -24,7 +24,7 @@ public class SpawnScript : MonoBehaviour {
 
 	private IEnumerator SpawnLoop() 
 	{
-		StartCoroutine (ChangePosition ());
+		//StartCoroutine (ChangePosition ());
 
 		yield return new WaitForSeconds (0.2f);
 
@@ -46,6 +46,7 @@ public class SpawnScript : MonoBehaviour {
 		return donald;
 	}
 
+	// functions
 	private IEnumerator ChangePosition() 
 	{
 		yield return new WaitForSeconds (0.2f);

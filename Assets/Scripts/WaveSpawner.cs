@@ -65,10 +65,6 @@ public class WaveSpawner : MonoBehaviour {
 
 			timeText.enabled = false;
 
-			//donaldMultiplier = scoreManager.numOfDonaldsAlive;
-
-			//scoreManager.radiation += scoreManager.radiationBar.fillAmount += 0.01f * donaldMultiplier * Time.deltaTime;
-
 			if (state != SpawnState.SPAWNING) 
 			{
 				//starts spawning the wave
@@ -87,7 +83,7 @@ public class WaveSpawner : MonoBehaviour {
 
 		Transform _sp = spawnPoints [Random.Range (0, spawnPoints.Length)];
 
-		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 4) + _sp.position, _sp.rotation);
+		GameObject don = Instantiate (_enemy, (Random.insideUnitSphere * 8) + _sp.position, _sp.rotation);
 		audio = don.GetComponent<AudioSource> ();
 
 		DonaldBehaviour getAudio = don.GetComponent<DonaldBehaviour> ();
